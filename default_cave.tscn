@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8pbu6u2xofno"]
+
+[ext_resource type="Script" path="res://game_manager.gd" id="1_y0ma4"]
+[ext_resource type="PackedScene" uid="uid://cgnhksqp8gbgi" path="res://room_number.tscn" id="2_cmrnn"]
+
+[node name="DefaultCave" type="Node2D"]
+script = ExtResource("1_y0ma4")
+
+[node name="RoomNumber" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(0, -256)
+room_number = 1
+
+[node name="RoomNumber2" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(448, 0)
+room_number = 2
+
+[node name="RoomNumber3" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(256, 336)
+room_number = 3
+
+[node name="RoomNumber4" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(-256, 336)
+room_number = 4
+
+[node name="RoomNumber5" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(-448, 0)
+room_number = 5
+
+[node name="RoomNumber6" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(-256, 0)
+room_number = 6
+
+[node name="RoomNumber7" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(-192, -128)
+room_number = 7
+
+[node name="RoomNumber8" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(0, -153)
+room_number = 8
+
+[node name="RoomNumber9" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(192, -128)
+room_number = 9
+
+[node name="RoomNumber10" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(256, 0)
+room_number = 10
+
+[node name="RoomNumber11" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(256, 128)
+room_number = 11
+
+[node name="RoomNumber12" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(192, 192)
+room_number = 12
+
+[node name="RoomNumber13" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(0, 256)
+room_number = 13
+
+[node name="RoomNumber14" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(-192, 192)
+room_number = 14
+
+[node name="RoomNumber15" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(-256, 128)
+room_number = 15
+
+[node name="RoomNumber16" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(-64, 48)
+room_number = 16
+
+[node name="RoomNumber17" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(-64, -40)
+room_number = 17
+
+[node name="RoomNumber18" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(64, -40)
+room_number = 18
+
+[node name="RoomNumber19" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(64, 48)
+room_number = 19
+
+[node name="RoomNumber20" parent="." instance=ExtResource("2_cmrnn")]
+position = Vector2(0, 103)
+room_number = 20

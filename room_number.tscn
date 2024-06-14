@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgnhksqp8gbgi"]
+
+[ext_resource type="Texture2D" uid="uid://dmq321pop4qyh" path="res://room_placeholder.png" id="1_xi67u"]
+[ext_resource type="Script" path="res://room_information.gd" id="2_p5ix4"]
+[ext_resource type="Script" path="res://click_room.gd" id="3_ev45o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unubd"]
+size = Vector2(32, 48)
+
+[node name="RoomNumber" type="Sprite2D" groups=["rooms"]]
+position = Vector2(0, -320)
+texture = ExtResource("1_xi67u")
+script = ExtResource("2_p5ix4")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_ev45o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_unubd")
+
+[node name="RoomNumberLabel" type="Label" parent="."]
+offset_left = -16.0
+offset_top = -48.0
+offset_right = 16.0
+offset_bottom = -25.0
+text = "#"
+horizontal_alignment = 1
