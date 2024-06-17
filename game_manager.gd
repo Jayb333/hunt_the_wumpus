@@ -9,8 +9,11 @@ var safe_rooms = rooms.keys()
 var threat_rooms = {}
 var threats = ["sinkhole", "sinkhole", "pitfall", "pitfall", "wumpus"]
 var player_pos = -1
-var threat
+var threat : String
 var random_room = rooms.keys()
+@export var starting_ammo : int
+@export var ricochet : int
+var current_ammo : int
 @onready var threat_label = $"../GUI/ThreatLabel"
 #@onready var default_cave = $"."
 var test_room = "res://room_number.tscn"
@@ -18,6 +21,8 @@ var test_room = "res://room_number.tscn"
 signal checked_threats(threat)
 signal updated_room_number(player_pos)
 signal invalid_room(warning)
+signal updated_ammo(current_ammo)
+signal cleared_threats()
 
 func _init():
 	populate_cave()
@@ -25,8 +30,11 @@ func _init():
 	
 func _ready():
 	check_for_threats()
+	current_ammo = starting_ammo
 	print(threat_rooms)
 	updated_room_number.emit(player_pos)
+	updated_ammo.emit(current_ammo)
+	print(current_ammo)
 	var rooms: Array[Node] = get_tree().get_nodes_in_group("rooms")
 	for room in rooms:
 		room.checked_room_number.connect(_check_valid_room)
@@ -84,47 +92,79 @@ func _check_valid_room(room_number, check_input):
 			
 			
 func shoot(room_number):
-	pass
-
+	#create array of random random targets
+	var random_ricochet_target = rooms.get(room_number)
+	current_ammo -= 1
+	updated_ammo.emit(current_ammo)
+	#for loop iterates up to ricochet value, default 5
+	for ricochet_count in ricochet:
+		#Check if room number has a threat
+		if room_number == player_pos:
+			print("You shot yourself and bleed out!")
+			dead("bullet")
+			break
+		match threat_rooms.get(room_number):
+			"wumpus":
+				print("Wumpus slain!")
+				win_the_game()
+				break
+			"pitfall":
+				print("Your shot is lost.")
+				break
+			_:
+				print("Your bullet ricochets off room " + str(room_number))
+				random_ricochet_target.shuffle()
+				room_number = random_ricochet_target[0]
+				random_ricochet_target = rooms.get(room_number)
+	wumpus_wakes()
+		
 func move(room_number):
 	player_pos = room_number
 	#print("You moved to :" + str(player_pos))
 	updated_room_number.emit(player_pos)
 	check_for_threats()
+	
+func _cleared_threats():
+	cleared_threats.emit()
 
 func check_for_threats():
+	_cleared_threats()
+	print("Print threat rooms key " + str(threat_rooms.get(player_pos)))
+	match threat_rooms.get(player_pos):
+		"sinkhole":
+			print("You get carried away!")
+			random_room.shuffle()
+			move(random_room[0])
+			print("Whisked away to room " + str(random_room[0]))
+		"pitfall":
+			print("It's not the fall that kills you...")
+			dead("pitfall")
+		"wumpus":
+			print("Food for the Wumpus!")
+			dead("wumpus")
+			
 	for i in rooms.get(player_pos):
 		for j in threats:
-			#print(i)
-			#print(j)
 			if threat_rooms.get(i) == j:
 				checked_threats.emit(str(j))
-				print(j)
-			else:
-				checked_threats.emit("")
-				#continue
-	#Check adjacent rooms for threats
-	##print(rooms.get(player_pos))
-	#for i in rooms.get(player_pos):
-		#print(i)
-		#print(threat_rooms.get(i))
-		##print("threat rooms: " + str(threat_rooms.get(i)))
-		##print("list of threats: " + str(threats))
-		#if str(threat_rooms.has(i)):
-			##checked_threats.emit(str(i))
-			#print("FOUND THREAT: " + str(threat_rooms.has(i)))
-			#print(i)
-		#else:
-			#print("no threat")
-		##
-		##if threat_rooms.find_key(rooms.get(player_pos)):
-			##print("Threat found")
-		##print("Print i " + str(i))
-		##print("Print rooms adjacent to player: " + str(rooms.get(player_pos)))
-		##if threats == threat_rooms.get(i):
-			##print("Threat found")
-		##print("Print threat rooms " + str(threat_rooms))
-		##if threat_rooms.get(i) == threats:
-			##print("Threat!")
-	##checked_threats.emit("")	
+				
+func dead(killed_by):
+	pass
+	
+func wumpus_wakes():
+	var new_wumpus_room
+	var wumpus_wake_chance = randi_range(0,4)
+	match wumpus_wake_chance:
+		1, 2, 3:
+			new_wumpus_room = rooms.get(threat_rooms.find_key("wumpus"))
+			new_wumpus_room.shuffle()
+			print("The wumpus wakes up and moves to " + str(new_wumpus_room[0]))
+			threat_rooms.erase(threat_rooms.find_key("wumpus"))
+			threat_rooms[new_wumpus_room[0]] = "wumpus"
+			print(threat_rooms)
+			check_for_threats()
+		_: 
+			print("The wumpus falls back asleep")
+
+func win_the_game():
 	pass

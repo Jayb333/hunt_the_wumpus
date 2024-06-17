@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8pbu6u2xofno"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_y0ma4"]
-[ext_resource type="PackedScene" uid="uid://cgnhksqp8gbgi" path="res://room_number.tscn" id="2_cmrnn"]
+[ext_resource type="PackedScene" uid="uid://cgnhksqp8gbgi" path="res://room_manager.tscn" id="2_cmrnn"]
 
 [node name="DefaultCave" type="Node2D"]
 script = ExtResource("1_y0ma4")
+starting_ammo = 5
 
 [node name="RoomNumber" parent="." instance=ExtResource("2_cmrnn")]
 position = Vector2(0, -256)

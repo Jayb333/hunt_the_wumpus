@@ -11,6 +11,7 @@ script = ExtResource("1_wdrdv")
 script = ExtResource("2_kjgf2")
 
 [node name="NoThreatsLabel" type="Label" parent="GUI"]
+visible = false
 offset_left = -640.0
 offset_top = -360.0
 offset_right = 640.0
@@ -69,6 +70,21 @@ theme_override_font_sizes/font_size = 32
 text = "Illegal Move"
 vertical_alignment = 1
 
+[node name="AmmoLabel" type="Label" parent="GUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 317.0
+offset_right = 640.0
+offset_bottom = 362.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Ammo: X"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="GameManager" parent="." instance=ExtResource("3_0q4u0")]
+ricochet = 5
