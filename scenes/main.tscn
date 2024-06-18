@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn30f6csb8dwc"]
+
+[ext_resource type="PackedScene" uid="uid://dx1n4uo8iljmy" path="res://scenes/gui.tscn" id="1_v7xo3"]
+[ext_resource type="PackedScene" uid="uid://c8pbu6u2xofno" path="res://scenes/default_cave.tscn" id="2_v8ken"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_yn1n5"]
+[ext_resource type="PackedScene" uid="uid://chot8jelglrsv" path="res://scenes/draw_manager.tscn" id="4_c8x4s"]
+
+[node name="Main" type="Node2D"]
+
+[node name="GUI" parent="." instance=ExtResource("1_v7xo3")]
+
+[node name="DrawManager" parent="." instance=ExtResource("4_c8x4s")]
+
+[node name="GameManager" parent="." instance=ExtResource("2_v8ken")]
+script = ExtResource("3_yn1n5")
+starting_ammo = 5
+ricochet = 4
+
+[node name="Camera2D" type="Camera2D" parent="."]

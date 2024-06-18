@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3my1mdidaeb3"
-path="res://.godot/imported/pitfall_placeholder.png-caa521919b5a6d1a43b0197421be377d.ctex"
+uid="uid://dmq321pop4qyh"
+path="res://.godot/imported/room_placeholder.png-89aba1f5c7914e43a55a3522d2e818ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pitfall_placeholder.png"
-dest_files=["res://.godot/imported/pitfall_placeholder.png-caa521919b5a6d1a43b0197421be377d.ctex"]
+source_file="res://sprites/room_placeholder.png"
+dest_files=["res://.godot/imported/room_placeholder.png-89aba1f5c7914e43a55a3522d2e818ea.ctex"]
 
 [params]
 

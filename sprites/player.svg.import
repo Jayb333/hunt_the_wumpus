@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc3bvas3epdty"
-path="res://.godot/imported/wumpus_placeholder.png-8220d85d845f389cf2bf20c7c39776d4.ctex"
+uid="uid://ddlf8wqfi0f3g"
+path="res://.godot/imported/player.svg-a1d9cdaebaa7b11ee242641a1ce50966.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wumpus_placeholder.png"
-dest_files=["res://.godot/imported/wumpus_placeholder.png-8220d85d845f389cf2bf20c7c39776d4.ctex"]
+source_file="res://sprites/player.svg"
+dest_files=["res://.godot/imported/player.svg-a1d9cdaebaa7b11ee242641a1ce50966.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

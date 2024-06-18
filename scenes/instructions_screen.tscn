@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxo7c5a4ueeki"]
+
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_707ux"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_707ux")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -53.0
+offset_right = 190.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -580.0
+offset_right = 580.0
+offset_bottom = 664.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 18
+text = "The game is set in a cave that consists of a 20 room labyrinth. Each room is connected to 3 other rooms. The objective of the player is to find and kill the Wumpus that lurks in the cave.
+
+The player has 5 shells. If they run out of shells before killing the Wumpus, the player loses the game.
+
+In the cave are: one Wumpus, two sinkholes, and two pitfalls.
+
+If the player enters a room with the Wumpus, they are eaten and the game is lost.
+
+If the player enters a room with a pitfall, they fall in and the game is lost.
+
+If the player enters a room with a sinkhole, the sinkhole deposits them into a random room.
+
+Each turn the player can either walk into an adjacent room or shoot into an adjacent room.
+
+Whenever the player enters a room, these \"sense\" threats in adjoining rooms. The messages are:
+
+Nearby Wumpus: \"A terrible presence is near.\"
+Nearby sinkhole: \"The earth shifts underfoot.\"
+Nearby pitfall: \"A gust of wind blows.\"
+When the player shoots, they win the game if they shoot into the room with the Wumpus. A missed shot will ricochet into four random rooms until it hits the player (game over), a pitfall (the shot is lost), or the Wumpus (the game is won). If the player fails to hit anything the Wumpus has a 75% of chance of waking up and moving into an adjacent room."
+autowrap_mode = 3
+
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

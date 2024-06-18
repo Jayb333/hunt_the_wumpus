@@ -1,0 +1,124 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx1n4uo8iljmy"]
+
+[ext_resource type="Script" path="res://scripts/gui.gd" id="1_gm7dr"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gm7dr")
+
+[node name="NoThreatsLabel" type="Label" parent="."]
+visible = false
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = -315.0
+theme_override_font_sizes/font_size = 32
+text = "Hello threats!"
+
+[node name="WumpusThreatLabel" type="Label" parent="."]
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = -315.0
+theme_override_font_sizes/font_size = 32
+text = "Hello threats!"
+
+[node name="PitfallThreatLabel" type="Label" parent="."]
+offset_left = -640.0
+offset_top = -315.0
+offset_right = 640.0
+offset_bottom = -270.0
+theme_override_font_sizes/font_size = 32
+text = "Hello threats!"
+
+[node name="SinkholeThreatLabel" type="Label" parent="."]
+offset_left = -640.0
+offset_top = -270.0
+offset_right = 640.0
+offset_bottom = -225.0
+theme_override_font_sizes/font_size = 32
+text = "Hello threats!"
+
+[node name="RoomNumberLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = 272.0
+offset_bottom = 317.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Room No: X"
+vertical_alignment = 1
+
+[node name="IllegalActionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -360.0
+offset_right = 320.0
+offset_bottom = -315.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Illegal Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmmoLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 500.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = -315.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "Ammo: X"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 420.0
+offset_top = 256.0
+offset_right = 640.0
+offset_bottom = 309.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Restart Game"
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 420.0
+offset_top = 309.0
+offset_right = 640.0
+offset_bottom = 362.0
+theme_override_font_sizes/font_size = 32
+text = "Quit Game"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(512, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

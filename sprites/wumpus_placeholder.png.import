@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjqusu1rpgq3f"
-path="res://.godot/imported/sinkhole_placeholder.png-4f13939f3165cd553d5e5d95f15aa27d.ctex"
+uid="uid://cc3bvas3epdty"
+path="res://.godot/imported/wumpus_placeholder.png-66c47bb92787edbad996f32ab3179b5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sinkhole_placeholder.png"
-dest_files=["res://.godot/imported/sinkhole_placeholder.png-4f13939f3165cd553d5e5d95f15aa27d.ctex"]
+source_file="res://sprites/wumpus_placeholder.png"
+dest_files=["res://.godot/imported/wumpus_placeholder.png-66c47bb92787edbad996f32ab3179b5b.ctex"]
 
 [params]
 

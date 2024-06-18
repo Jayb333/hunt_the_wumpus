@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgnhksqp8gbgi"]
 
-[ext_resource type="Texture2D" uid="uid://dmq321pop4qyh" path="res://room_placeholder.png" id="1_cctlp"]
-[ext_resource type="Script" path="res://room_information.gd" id="2_re4ua"]
-[ext_resource type="Script" path="res://click_room.gd" id="3_msa05"]
+[ext_resource type="Texture2D" uid="uid://dmq321pop4qyh" path="res://sprites/room_placeholder.png" id="1_rl8nt"]
+[ext_resource type="Script" path="res://scripts/room_clicked.gd" id="2_re4ua"]
+[ext_resource type="Script" path="res://scripts/click_room.gd" id="3_msa05"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unubd"]
 size = Vector2(32, 48)
 
 [node name="RoomManager" type="Sprite2D" groups=["rooms"]]
 position = Vector2(0, -320)
-texture = ExtResource("1_cctlp")
+texture = ExtResource("1_rl8nt")
 script = ExtResource("2_re4ua")
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @onready var illegal_action_label = $IllegalActionLabel
 #@onready var no_threats_label = $NoThreatsLabel
@@ -16,14 +16,14 @@ func _ready():
 	game_manager.checked_threats.connect(_update_threats_label)
 	game_manager.updated_ammo.connect(_update_ammo)
 	game_manager.cleared_threats.connect(_clear_threats_label)
+	game_manager.updated_ricochet_room.connect(_ricochet_message)
 	illegal_action_label.text = ""
 	_clear_threats_label()
 	
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _ricochet_message(random_ricochet_target):
+	illegal_action_label.text = "Bullet ricocheted into room " + str(random_ricochet_target[0])
 
 func _clear_threats_label():
 	#no_threats_label.text = ""
@@ -67,3 +67,9 @@ func _invalid_room(warning):
 
 func _update_ammo(current_ammo):
 	ammo_label.text = "Ammo: " + str(current_ammo)
+
+func _on_restart_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
+
+func _on_quit_button_pressed():
+	get_tree().quit()
