@@ -1,13 +1,13 @@
 extends Control
 
-@onready var illegal_action_label = $IllegalActionLabel
-#@onready var no_threats_label = $NoThreatsLabel
-@onready var wumpus_threat_label = $WumpusThreatLabel
-@onready var pitfall_threat_label = $PitfallThreatLabel
-@onready var sinkhole_threat_label = $SinkholeThreatLabel
-@onready var room_number_label = $RoomNumberLabel
+@onready var wumpus_threat_label = %WumpusThreatLabel
+@onready var pitfall_threat_label = %PitfallThreatLabel
+@onready var sinkhole_threat_label = %SinkholeThreatLabel
+@onready var room_number_label = %RoomNumberLabel
+@onready var illegal_action_label = %IllegalActionLabel
+@onready var ammo_label = %AmmoLabel
+
 @onready var game_manager = $"../GameManager"
-@onready var ammo_label = $AmmoLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

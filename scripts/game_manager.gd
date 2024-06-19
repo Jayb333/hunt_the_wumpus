@@ -14,7 +14,7 @@ var random_room = rooms.keys()
 @export var starting_ammo : int
 @export var ricochet : int
 var current_ammo : int
-@onready var threat_label = $"../GUI/ThreatLabel"
+#@onready var threat_label = $"../GUI/ThreatLabel"
 #@onready var default_cave = $"."
 var test_room = "res://room_number.tscn"
 

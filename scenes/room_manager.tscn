@@ -8,6 +8,7 @@
 size = Vector2(32, 48)
 
 [node name="RoomManager" type="Sprite2D" groups=["rooms"]]
+z_index = 5
 position = Vector2(0, -320)
 texture = ExtResource("1_rl8nt")
 script = ExtResource("2_re4ua")

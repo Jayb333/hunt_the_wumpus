@@ -3,117 +3,99 @@
 [ext_resource type="Script" path="res://scripts/gui.gd" id="1_gm7dr"]
 
 [node name="GUI" type="Control"]
+z_index = -2
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 script = ExtResource("1_gm7dr")
 
-[node name="NoThreatsLabel" type="Label" parent="."]
-visible = false
-offset_left = -640.0
-offset_top = -360.0
-offset_right = 640.0
-offset_bottom = -315.0
-theme_override_font_sizes/font_size = 32
-text = "Hello threats!"
-
-[node name="WumpusThreatLabel" type="Label" parent="."]
-offset_left = -640.0
-offset_top = -360.0
-offset_right = 640.0
-offset_bottom = -315.0
-theme_override_font_sizes/font_size = 32
-text = "Hello threats!"
-
-[node name="PitfallThreatLabel" type="Label" parent="."]
-offset_left = -640.0
-offset_top = -315.0
-offset_right = 640.0
-offset_bottom = -270.0
-theme_override_font_sizes/font_size = 32
-text = "Hello threats!"
-
-[node name="SinkholeThreatLabel" type="Label" parent="."]
-offset_left = -640.0
-offset_top = -270.0
-offset_right = 640.0
-offset_bottom = -225.0
-theme_override_font_sizes/font_size = 32
-text = "Hello threats!"
-
-[node name="RoomNumberLabel" type="Label" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(512, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -640.0
-offset_top = 272.0
-offset_bottom = 317.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="WumpusThreatLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Hello threats!"
+
+[node name="PitfallThreatLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Hello threats!"
+
+[node name="SinkholeThreatLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Hello threats!"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="RoomNumberLabel" type="Label" parent="MarginContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Room No: X"
 vertical_alignment = 1
 
-[node name="IllegalActionLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -92.0
-offset_top = -360.0
-offset_right = 93.0
-offset_bottom = -315.0
-grow_horizontal = 2
+[node name="IllegalActionLabel" type="Label" parent="MarginContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Illegal Move"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AmmoLabel" type="Label" parent="."]
-layout_mode = 1
-offset_left = -640.0
-offset_top = 317.0
-offset_right = -500.0
-offset_bottom = 362.0
+[node name="AmmoLabel" type="Label" parent="MarginContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Ammo: X"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="RestartButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 420.0
-offset_top = 256.0
-offset_right = 640.0
-offset_bottom = 309.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Restart Game"
 
-[node name="QuitButton" type="Button" parent="."]
-offset_left = 420.0
-offset_top = 309.0
-offset_right = 640.0
-offset_bottom = 362.0
+[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit Game"
 
-[node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(512, 0)
-offset_right = 40.0
-offset_bottom = 40.0
-
-[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
