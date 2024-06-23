@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc3bvas3epdty"
-path="res://.godot/imported/wumpus_placeholder.png-66c47bb92787edbad996f32ab3179b5b.ctex"
+uid="uid://c4v8x8fbcdtkx"
+path="res://.godot/imported/spr_bullet.png-535ab54249589b64d136e73ad6590ade.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/wumpus_placeholder.png"
-dest_files=["res://.godot/imported/wumpus_placeholder.png-66c47bb92787edbad996f32ab3179b5b.ctex"]
+source_file="res://sprites/spr_bullet.png"
+dest_files=["res://.godot/imported/spr_bullet.png-535ab54249589b64d136e73ad6590ade.ctex"]
 
 [params]
 

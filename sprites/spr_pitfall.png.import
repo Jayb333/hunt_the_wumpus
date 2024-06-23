@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oo1oq2colx5b"
-path="res://.godot/imported/Stop.svg-060df391db886698834e0438845a38c5.ctex"
+uid="uid://cjrjiddp2vafm"
+path="res://.godot/imported/spr_pitfall.png-cd0b6b80410b6d42993fe690fe54191e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/addons/SignalVisualizer/Stop.svg"
-dest_files=["res://.godot/imported/Stop.svg-060df391db886698834e0438845a38c5.ctex"]
+source_file="res://sprites/spr_pitfall.png"
+dest_files=["res://.godot/imported/spr_pitfall.png-cd0b6b80410b6d42993fe690fe54191e.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

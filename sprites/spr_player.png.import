@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmq321pop4qyh"
-path="res://.godot/imported/room_placeholder.png-89aba1f5c7914e43a55a3522d2e818ea.ctex"
+uid="uid://cdngkvarldrf1"
+path="res://.godot/imported/spr_player.png-b2d97a705733283e0b0313c194fd9188.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/room_placeholder.png"
-dest_files=["res://.godot/imported/room_placeholder.png-89aba1f5c7914e43a55a3522d2e818ea.ctex"]
+source_file="res://sprites/spr_player.png"
+dest_files=["res://.godot/imported/spr_player.png-b2d97a705733283e0b0313c194fd9188.ctex"]
 
 [params]
 

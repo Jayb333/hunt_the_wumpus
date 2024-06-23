@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgnhksqp8gbgi"]
 
-[ext_resource type="Texture2D" uid="uid://dmq321pop4qyh" path="res://sprites/room_placeholder.png" id="1_rl8nt"]
+[ext_resource type="Texture2D" uid="uid://c7lpvff6flx3o" path="res://sprites/spr_room.png" id="1_o3suv"]
 [ext_resource type="Script" path="res://scripts/room_clicked.gd" id="2_re4ua"]
 [ext_resource type="Script" path="res://scripts/click_room.gd" id="3_msa05"]
 
@@ -8,12 +8,12 @@
 size = Vector2(32, 48)
 
 [node name="RoomManager" type="Sprite2D" groups=["rooms"]]
-z_index = 5
 position = Vector2(0, -320)
-texture = ExtResource("1_rl8nt")
+texture = ExtResource("1_o3suv")
 script = ExtResource("2_re4ua")
 
 [node name="Area2D" type="Area2D" parent="."]
+z_index = -1
 script = ExtResource("3_msa05")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

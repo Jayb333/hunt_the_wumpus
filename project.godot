@@ -13,7 +13,7 @@ config_version=5
 config/name="Wumpus"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://sprites/player.svg"
+config/icon="res://sprites/spr_player.svg"
 
 [display]
 
