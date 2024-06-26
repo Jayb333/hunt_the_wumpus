@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://epieqi4y1d6u"]
+
+[ext_resource type="Texture2D" uid="uid://c4v8x8fbcdtkx" path="res://sprites/spr_bullet.png" id="1_2keyl"]
+
+[node name="BulletSprite" type="Sprite2D"]
+z_index = 5
+texture = ExtResource("1_2keyl")

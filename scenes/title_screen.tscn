@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://rc1mvsfsvds3"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_707ux"]
-[ext_resource type="FontFile" uid="uid://b1a0blqipd8iq" path="res://fonts/DotGothic16-Regular.ttf" id="2_xgax1"]
-[ext_resource type="StyleBox" uid="uid://cx56lh3dk7lvx" path="res://sprites/new_style_box_flat.tres" id="3_hle50"]
-[ext_resource type="StyleBox" uid="uid://kf732l5eavch" path="res://sprites/new_style_box_flat2.tres" id="4_ucvfv"]
+[ext_resource type="FontFile" uid="uid://do0yinjedn8al" path="res://fonts/DotGothic16-Regular.ttf" id="2_xgax1"]
+[ext_resource type="Texture2D" uid="uid://3aetbagtaocn" path="res://sprites/spr_wumpus.png" id="3_p8n7g"]
+[ext_resource type="Texture2D" uid="uid://cdngkvarldrf1" path="res://sprites/spr_player.png" id="4_mmcmj"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -46,25 +46,29 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xgax1")
 theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = ExtResource("3_hle50")
-theme_override_styles/hover = ExtResource("4_ucvfv")
 text = "New Game"
 
 [node name="InstructionsButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xgax1")
 theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = ExtResource("3_hle50")
-theme_override_styles/hover = ExtResource("4_ucvfv")
 text = "Instructions"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xgax1")
 theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = ExtResource("3_hle50")
-theme_override_styles/hover = ExtResource("4_ucvfv")
 text = "Quit Game"
+
+[node name="SprWumpus" type="Sprite2D" parent="."]
+position = Vector2(168, 592)
+scale = Vector2(15.9687, 15.9688)
+texture = ExtResource("3_p8n7g")
+
+[node name="SprPlayer" type="Sprite2D" parent="."]
+position = Vector2(1248, 656)
+scale = Vector2(4, 4)
+texture = ExtResource("4_mmcmj")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/InstructionsButton" to="." method="_on_instructions_button_pressed"]

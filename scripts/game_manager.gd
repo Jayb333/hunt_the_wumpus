@@ -14,8 +14,6 @@ var random_room = rooms.keys()
 @export var starting_ammo : int
 @export var ricochet : int
 var current_ammo : int
-#@onready var threat_label = $"../GUI/ThreatLabel"
-#@onready var default_cave = $"."
 var test_room = "res://room_number.tscn"
 
 signal checked_threats(threat)
@@ -26,11 +24,17 @@ signal cleared_threats()
 signal updated_player(player_pos)
 signal updated_ricochet_room(random_ricochet_room)
 signal updated_shot(room_number)
-func _init():
-	populate_cave()
-	
-	
+signal shot_into_room(room_number)
+signal woke_wumpus()
+signal created_bullet()
+
 func _ready():
+	Globals.death_by_wumpus = false
+	Globals.death_by_pitfall = false
+	Globals.death_by_ricochet = false
+	Globals.death_by_defenseless = false
+	Globals.actions = 0
+	populate_cave()
 	$"../DrawManager".recieve_dict(rooms)
 	$"../DrawManager".update_player(player_pos)
 	check_for_threats()
@@ -68,52 +72,57 @@ func populate_cave():
 	#Finally place the player in a random safe room
 	safe_rooms.shuffle()
 	player_pos = safe_rooms[0]
+	#check_for_threats()
 	move(player_pos)
-	print("The player is in room " + str(player_pos))
 
 
 	
 func _check_valid_room(room_number, check_input):
-	#check player input
+	#Check for type of input, move or shoot. The counter variable is used to trigger an invalid
+	#room. If the loop cycles 3 or more times it means
+	var counter = 0
 	for i in rooms.get(room_number):
-		#print("You clicked on :" + str(room_number))
-		#print("This room has the following exits :" + str(rooms.get(room_number)))
-		#print(i)
-		#print("Player is in room :" + str(player_pos))
+		print(rooms.get(room_number))
+		counter += 1
 		if room_number == player_pos:
 			#print("You're already in this room.")
 			invalid_room.emit("same room")
 			break
 		elif i == player_pos:
 			#this is a legal space, now check for input
-			if check_input == "shoot":
-				shoot(room_number)
-				break
-			elif check_input == "move":
-				move(room_number)
-				break
-		else: 
-			#print("Illegal Move")
+			match check_input:
+				"shoot":
+					Globals.actions += 1
+					shoot(room_number)
+					break
+				"move":
+					Globals.actions += 1
+					move(room_number)
+					break
+		elif counter >= 3: 
+			print(i)
 			invalid_room.emit("too far")
 			
 			
 func shoot(room_number):
 	#create array of random random targets
+	Globals.pause()
 	var random_ricochet_target = rooms.get(room_number)
+	$"../DrawManager".create_bullet()
 	current_ammo -= 1
 	updated_ammo.emit(current_ammo)
 	updated_shot.emit(room_number)
-	await get_tree().create_timer(2).timeout
+	shot_into_room.emit(room_number)
+	await get_tree().create_timer(1).timeout
 	#for loop iterates up to ricochet value, default 5
 	for ricochet_count in ricochet:
 		#Check if room number has a threat
+		print(room_number)
 		if room_number == player_pos:
-			print("You shot yourself and bleed out!")
 			dead("bullet")
 			break
 		match threat_rooms.get(room_number):
 			"wumpus":
-				print("Wumpus slain!")
 				win_the_game()
 				break
 			_:
@@ -122,38 +131,41 @@ func shoot(room_number):
 				room_number = random_ricochet_target[0]
 				updated_ricochet_room.emit(random_ricochet_target)
 				updated_shot.emit(room_number)
-				await get_tree().create_timer(2).timeout
+				await get_tree().create_timer(1).timeout
 	if current_ammo <= 0:
 		dead("defenseless")
 	else:
 		wumpus_wakes()
-		
+	Globals.unpause()
+	$"../DrawManager".clear_bullet()
+	
 func move(room_number):
+	#get_tree().paused = true
+	Globals.pause()
 	player_pos = room_number
-	#print("You moved to :" + str(player_pos))
+	await get_tree().create_timer(.5).timeout
+	#get_tree().paused = false
+	Globals.unpause()
 	updated_room_number.emit(player_pos)
 	check_for_threats()
 	updated_player.emit(player_pos)
-	#update_player.emit(player_pos)
+	
 	
 func _cleared_threats():
 	cleared_threats.emit()
 
 func check_for_threats():
-
 	_cleared_threats()
 	print("Print threat rooms key " + str(threat_rooms.get(player_pos)))
 	match threat_rooms.get(player_pos):
 		"sinkhole":
-			print("You get carried away!")
 			random_room.shuffle()
 			move(random_room[0])
-			print("Whisked away to room " + str(random_room[0]))
+			invalid_room.emit("sinkhole")
+			#print a message
 		"pitfall":
-			print("It's not the fall that kills you...")
 			dead("pitfall")
 		"wumpus":
-			print("Food for the Wumpus!")
 			dead("wumpus")
 			
 	for i in rooms.get(player_pos):
@@ -164,8 +176,14 @@ func check_for_threats():
 func dead(killed_by):
 	match killed_by:
 		"wumpus":
-			get_tree().change_scene_to_file("res://scenes/wumpus_game_over.tscn")
-	pass
+			Globals.death_by_wumpus = true
+		"pitfall":
+			Globals.death_by_pitfall = true
+		"bullet":
+			Globals.death_by_ricochet = true
+		"defenseless":
+			Globals.death_by_defenseless = true
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 	
 func wumpus_wakes():
 	var new_wumpus_room
@@ -174,13 +192,12 @@ func wumpus_wakes():
 		1, 2, 3:
 			new_wumpus_room = rooms.get(threat_rooms.find_key("wumpus"))
 			new_wumpus_room.shuffle()
-			print("The wumpus wakes up and moves to " + str(new_wumpus_room[0]))
+			woke_wumpus.emit()
 			threat_rooms.erase(threat_rooms.find_key("wumpus"))
 			threat_rooms[new_wumpus_room[0]] = "wumpus"
-			print(threat_rooms)
 			check_for_threats()
 		_: 
-			print("The wumpus falls back asleep")
+			pass
 
 func win_the_game():
-	pass
+	get_tree().change_scene_to_file("res://scenes/win_screen.tscn")

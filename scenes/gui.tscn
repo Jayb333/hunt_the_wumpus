@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dx1n4uo8iljmy"]
+[gd_scene load_steps=3 format=3 uid="uid://dx1n4uo8iljmy"]
 
 [ext_resource type="Script" path="res://scripts/gui.gd" id="1_gm7dr"]
+[ext_resource type="FontFile" uid="uid://do0yinjedn8al" path="res://fonts/DotGothic16-Regular.ttf" id="2_ktrbo"]
 
 [node name="GUI" type="Control"]
 z_index = -2
@@ -35,18 +36,21 @@ size_flags_vertical = 0
 [node name="WumpusThreatLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ktrbo")
 theme_override_font_sizes/font_size = 32
 text = "Hello threats!"
 
 [node name="PitfallThreatLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ktrbo")
 theme_override_font_sizes/font_size = 32
 text = "Hello threats!"
 
 [node name="SinkholeThreatLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ktrbo")
 theme_override_font_sizes/font_size = 32
 text = "Hello threats!"
 
@@ -58,14 +62,17 @@ size_flags_vertical = 0
 [node name="RoomNumberLabel" type="Label" parent="MarginContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ktrbo")
 theme_override_font_sizes/font_size = 32
 text = "Room No: X"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="IllegalActionLabel" type="Label" parent="MarginContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_ktrbo")
 theme_override_font_sizes/font_size = 32
 text = "Illegal Move"
 horizontal_alignment = 1
@@ -74,6 +81,7 @@ vertical_alignment = 1
 [node name="AmmoLabel" type="Label" parent="MarginContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ktrbo")
 theme_override_font_sizes/font_size = 32
 text = "Ammo: X"
 horizontal_alignment = 2
@@ -89,13 +97,22 @@ layout_mode = 2
 
 [node name="RestartButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ktrbo")
 theme_override_font_sizes/font_size = 32
 text = "Restart Game"
 
+[node name="TitleButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ktrbo")
+theme_override_font_sizes/font_size = 32
+text = "Title Screen"
+
 [node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ktrbo")
 theme_override_font_sizes/font_size = 32
 text = "Quit Game"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/TitleButton" to="." method="_on_title_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

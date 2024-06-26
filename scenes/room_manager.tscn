@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgnhksqp8gbgi"]
 
-[ext_resource type="Texture2D" uid="uid://c7lpvff6flx3o" path="res://sprites/spr_room.png" id="1_o3suv"]
+[ext_resource type="Texture2D" uid="uid://bdft50s63xjyq" path="res://sprites/spr_room_dark.png" id="1_ajp3l"]
 [ext_resource type="Script" path="res://scripts/room_clicked.gd" id="2_re4ua"]
 [ext_resource type="Script" path="res://scripts/click_room.gd" id="3_msa05"]
 
@@ -9,7 +9,7 @@ size = Vector2(32, 48)
 
 [node name="RoomManager" type="Sprite2D" groups=["rooms"]]
 position = Vector2(0, -320)
-texture = ExtResource("1_o3suv")
+texture = ExtResource("1_ajp3l")
 script = ExtResource("2_re4ua")
 
 [node name="Area2D" type="Area2D" parent="."]

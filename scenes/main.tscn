@@ -20,7 +20,7 @@ mouse_filter = 2
 [node name="GameManager" parent="." instance=ExtResource("2_v8ken")]
 script = ExtResource("3_yn1n5")
 starting_ammo = 5
-ricochet = 4
+ricochet = 5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
