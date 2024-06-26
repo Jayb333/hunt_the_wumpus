@@ -15,6 +15,7 @@ var random_room = rooms.keys()
 @export var ricochet : int
 var current_ammo : int
 var test_room = "res://room_number.tscn"
+@onready var shotgun = $"../shotgun"
 
 signal checked_threats(threat)
 signal updated_room_number(player_pos)
@@ -27,6 +28,7 @@ signal updated_shot(room_number)
 signal shot_into_room(room_number)
 signal woke_wumpus()
 signal created_bullet()
+signal draw_rooms(player_pos, exits)
 
 func _ready():
 	Globals.death_by_wumpus = false
@@ -75,8 +77,6 @@ func populate_cave():
 	#check_for_threats()
 	move(player_pos)
 
-
-	
 func _check_valid_room(room_number, check_input):
 	#Check for type of input, move or shoot. The counter variable is used to trigger an invalid
 	#room. If the loop cycles 3 or more times it means
@@ -105,6 +105,7 @@ func _check_valid_room(room_number, check_input):
 			
 			
 func shoot(room_number):
+	shotgun.play()
 	#create array of random random targets
 	Globals.pause()
 	var random_ricochet_target = rooms.get(room_number)
@@ -149,7 +150,7 @@ func move(room_number):
 	updated_room_number.emit(player_pos)
 	check_for_threats()
 	updated_player.emit(player_pos)
-	
+	draw_rooms.emit(player_pos, rooms.get(player_pos))
 	
 func _cleared_threats():
 	cleared_threats.emit()

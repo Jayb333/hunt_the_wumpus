@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://rc1mvsfsvds3"]
+[gd_scene load_steps=7 format=3 uid="uid://rc1mvsfsvds3"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_707ux"]
 [ext_resource type="FontFile" uid="uid://do0yinjedn8al" path="res://fonts/DotGothic16-Regular.ttf" id="2_xgax1"]
 [ext_resource type="Texture2D" uid="uid://3aetbagtaocn" path="res://sprites/spr_wumpus.png" id="3_p8n7g"]
 [ext_resource type="Texture2D" uid="uid://cdngkvarldrf1" path="res://sprites/spr_player.png" id="4_mmcmj"]
+[ext_resource type="AudioStream" uid="uid://c5luvbhtf5i11" path="res://audio/title.wav" id="5_i5is3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vc5qs"]
+bg_color = Color(0.25098, 0.192157, 0.552941, 1)
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -60,6 +64,16 @@ theme_override_fonts/font = ExtResource("2_xgax1")
 theme_override_font_sizes/font_size = 64
 text = "Quit Game"
 
+[node name="CheckBox" type="CheckBox" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_xgax1")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_vc5qs")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_vc5qs")
+text = "Mute"
+
 [node name="SprWumpus" type="Sprite2D" parent="."]
 position = Vector2(168, 592)
 scale = Vector2(15.9687, 15.9688)
@@ -70,6 +84,13 @@ position = Vector2(1248, 656)
 scale = Vector2(4, 4)
 texture = ExtResource("4_mmcmj")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_i5is3")
+volume_db = -9.0
+autoplay = true
+bus = &"SFX"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/InstructionsButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="toggled" from="MarginContainer/CheckBox" to="." method="_on_check_box_toggled"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn30f6csb8dwc"]
+[gd_scene load_steps=6 format=3 uid="uid://dn30f6csb8dwc"]
 
 [ext_resource type="PackedScene" uid="uid://dx1n4uo8iljmy" path="res://scenes/gui.tscn" id="1_v7xo3"]
 [ext_resource type="PackedScene" uid="uid://c8pbu6u2xofno" path="res://scenes/default_cave.tscn" id="2_v8ken"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_yn1n5"]
 [ext_resource type="PackedScene" uid="uid://chot8jelglrsv" path="res://scenes/draw_manager.tscn" id="4_c8x4s"]
+[ext_resource type="AudioStream" uid="uid://chawxfatxb100" path="res://audio/shotgun.wav" id="5_iy0uw"]
 
 [node name="Main" type="Node2D"]
 
@@ -24,3 +25,8 @@ ricochet = 5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
+
+[node name="shotgun" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_iy0uw")
+bus = &"SFX"
