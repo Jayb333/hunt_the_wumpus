@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn30f6csb8dwc"]
+[gd_scene load_steps=11 format=3 uid="uid://dn30f6csb8dwc"]
 
 [ext_resource type="PackedScene" uid="uid://dx1n4uo8iljmy" path="res://scenes/gui.tscn" id="1_v7xo3"]
 [ext_resource type="PackedScene" uid="uid://c8pbu6u2xofno" path="res://scenes/default_cave.tscn" id="2_v8ken"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_yn1n5"]
 [ext_resource type="PackedScene" uid="uid://chot8jelglrsv" path="res://scenes/draw_manager.tscn" id="4_c8x4s"]
 [ext_resource type="AudioStream" uid="uid://chawxfatxb100" path="res://audio/shotgun.wav" id="5_iy0uw"]
+[ext_resource type="AudioStream" uid="uid://hwltunn0b1cy" path="res://audio/footsteps.wav" id="6_slkal"]
+[ext_resource type="AudioStream" uid="uid://bo8dfej1a8tw5" path="res://audio/ricochet.wav" id="7_7jqu8"]
+[ext_resource type="AudioStream" uid="uid://u724peq2y161" path="res://audio/sinkhole.wav" id="8_ue08d"]
+[ext_resource type="AudioStream" uid="uid://vcgkh1y71bt0" path="res://audio/wumpus_attacks.wav" id="9_qfj84"]
+[ext_resource type="AudioStream" uid="uid://jnvn7136xigc" path="res://audio/pitfall.wav" id="10_y6kp5"]
 
 [node name="Main" type="Node2D"]
 
@@ -26,7 +31,32 @@ ricochet = 5
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="shotgun" type="AudioStreamPlayer" parent="."]
+[node name="ShotgunSFX" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("5_iy0uw")
+bus = &"SFX"
+
+[node name="FootstepsSFX" type="AudioStreamPlayer" parent="."]
+process_mode = 1
+stream = ExtResource("6_slkal")
+bus = &"SFX"
+
+[node name="RicochetSFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_7jqu8")
+bus = &"SFX"
+
+[node name="SinkholeSFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("8_ue08d")
+bus = &"SFX"
+
+[node name="WumpusAttacksSFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("9_qfj84")
+bus = &"SFX"
+
+[node name="PitfallSFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_y6kp5")
 bus = &"SFX"

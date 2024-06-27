@@ -15,7 +15,12 @@ var random_room = rooms.keys()
 @export var ricochet : int
 var current_ammo : int
 var test_room = "res://room_number.tscn"
-@onready var shotgun = $"../shotgun"
+@onready var shotgun_sfx = $"../ShotgunSFX"
+@onready var ricochet_sfx = $"../RicochetSFX"
+@onready var footsteps_sfx = $"../FootstepsSFX"
+@onready var sinkhole_sfx = $"../SinkholeSFX"
+@onready var wumpus_attacks_sfx = $"../WumpusAttacksSFX"
+@onready var pitfall_sfx = $"../PitfallSFX"
 
 signal checked_threats(threat)
 signal updated_room_number(player_pos)
@@ -85,7 +90,6 @@ func _check_valid_room(room_number, check_input):
 		print(rooms.get(room_number))
 		counter += 1
 		if room_number == player_pos:
-			#print("You're already in this room.")
 			invalid_room.emit("same room")
 			break
 		elif i == player_pos:
@@ -100,12 +104,10 @@ func _check_valid_room(room_number, check_input):
 					move(room_number)
 					break
 		elif counter >= 3: 
-			print(i)
 			invalid_room.emit("too far")
 			
-			
 func shoot(room_number):
-	shotgun.play()
+	shotgun_sfx.play()
 	#create array of random random targets
 	Globals.pause()
 	var random_ricochet_target = rooms.get(room_number)
@@ -127,6 +129,7 @@ func shoot(room_number):
 				win_the_game()
 				break
 			_:
+				ricochet_sfx.play()
 				random_ricochet_target = rooms.get(room_number)
 				random_ricochet_target.shuffle()
 				room_number = random_ricochet_target[0]
@@ -141,7 +144,7 @@ func shoot(room_number):
 	$"../DrawManager".clear_bullet()
 	
 func move(room_number):
-	#get_tree().paused = true
+	footsteps_sfx.play()
 	Globals.pause()
 	player_pos = room_number
 	await get_tree().create_timer(.5).timeout
@@ -160,13 +163,19 @@ func check_for_threats():
 	print("Print threat rooms key " + str(threat_rooms.get(player_pos)))
 	match threat_rooms.get(player_pos):
 		"sinkhole":
+			footsteps_sfx.stream_paused = true
+			sinkhole_sfx.play()
+			await sinkhole_sfx.finished
 			random_room.shuffle()
 			move(random_room[0])
 			invalid_room.emit("sinkhole")
-			#print a message
 		"pitfall":
+			pitfall_sfx.play()
+			await pitfall_sfx.finished
 			dead("pitfall")
 		"wumpus":
+			wumpus_attacks_sfx.play()
+			await wumpus_attacks_sfx.finished
 			dead("wumpus")
 			
 	for i in rooms.get(player_pos):

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://1by5sq3ofxw4"]
+[gd_scene load_steps=4 format=3 uid="uid://1by5sq3ofxw4"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_jpr3k"]
 [ext_resource type="FontFile" uid="uid://do0yinjedn8al" path="res://fonts/DotGothic16-Regular.ttf" id="2_b17ub"]
+[ext_resource type="AudioStream" uid="uid://bgma8pwj1qjek" path="res://audio/lose.wav" id="3_4eofg"]
 
 [node name="WumpusGameOver" type="Control"]
 layout_mode = 3
@@ -56,6 +57,10 @@ theme_override_fonts/font = ExtResource("2_b17ub")
 theme_override_font_sizes/font_size = 64
 text = "Death message"
 autowrap_mode = 3
+
+[node name="Lose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4eofg")
+bus = &"SFX"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TitleButton" to="." method="_on_title_button_pressed"]

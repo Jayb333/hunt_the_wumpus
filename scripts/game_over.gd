@@ -1,10 +1,11 @@
 extends Control
 
 @onready var game_over_label = $MarginContainer/GameOverLabel
+@onready var lose = $Lose
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#match Globals:
+	lose.play()
 	if Globals.death_by_wumpus == true:
 		game_over_label.text = "The Wumpus eats well tonight."
 	if Globals.death_by_pitfall == true:

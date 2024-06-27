@@ -86,7 +86,6 @@ texture = ExtResource("4_mmcmj")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_i5is3")
-volume_db = -9.0
 autoplay = true
 bus = &"SFX"
 
