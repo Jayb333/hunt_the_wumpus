@@ -3,8 +3,8 @@ extends Control
 @onready var game_over_label = $MarginContainer/GameOverLabel
 @onready var lose = $Lose
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	#Creates the different game over messages based on what triggered the game over.
 	lose.play()
 	if Globals.death_by_wumpus == true:
 		game_over_label.text = "The Wumpus eats well tonight."

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgnhksqp8gbgi"]
 
 [ext_resource type="Texture2D" uid="uid://bdft50s63xjyq" path="res://sprites/spr_room_dark.png" id="1_ajp3l"]
-[ext_resource type="Script" path="res://scripts/room_clicked.gd" id="2_re4ua"]
+[ext_resource type="Script" path="res://scripts/room_manager.gd" id="2_re4ua"]
 [ext_resource type="Script" path="res://scripts/click_room.gd" id="3_msa05"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unubd"]

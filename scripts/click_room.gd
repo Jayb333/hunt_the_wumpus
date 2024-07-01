@@ -1,13 +1,12 @@
 extends Area2D
-#Clicking on the sprite emits a signal to check the room number from the parent node.
+#Clicking on the Area2D emits a signal to the room manager to verify the room
+#number clicked.
 
 signal room_sprite_clicked
 
-func _input_event(viewport, event, shape_idx):
+func _input_event(_viewport, event, _shape_idx):
 	
 	if event.is_action_pressed("move"):
-		#print("I have checked the room.")
 		room_sprite_clicked.emit("move")
 	if event.is_action_pressed("shoot"):
-		print("I have checked the room.")
 		room_sprite_clicked.emit("shoot")

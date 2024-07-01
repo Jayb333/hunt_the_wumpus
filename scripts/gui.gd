@@ -1,5 +1,10 @@
 extends Control
 
+#Manages the GUI and updates the various labels. "Illegal_action_label" was originally
+#used to warn the player when they clicked on a room they couldn't access but
+#I end up using it for miscellaneous messages and didn't bother to rename it.
+#What the various functions do is pretty self explanatory. 
+
 @onready var wumpus_threat_label = %WumpusThreatLabel
 @onready var pitfall_threat_label = %PitfallThreatLabel
 @onready var sinkhole_threat_label = %SinkholeThreatLabel
@@ -8,7 +13,6 @@ extends Control
 @onready var ammo_label = %AmmoLabel
 @onready var game_manager = $"../GameManager"
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	game_manager.updated_room_number.connect(_update_room_label)
 	game_manager.invalid_room.connect(_invalid_room)
@@ -20,8 +24,6 @@ func _ready():
 	game_manager.woke_wumpus.connect(_wumpus_wakes)
 	illegal_action_label.text = ""
 	_clear_threats_label()
-	
-	pass
 
 func _ricochet_message(random_ricochet_target):
 	illegal_action_label.text = "Bullet ricocheted into room " + str(random_ricochet_target[0])
@@ -30,9 +32,10 @@ func _wumpus_wakes():
 	illegal_action_label.text = "Something lumbers in the darkness..."
 	
 func _shoot_into(room_number):
-	illegal_action_label.text = "You shoot into room# " + str(room_number)
+	illegal_action_label.text = "You shoot into room " + str(room_number)
 
 func _clear_threats_label():
+	#Clear the threat messages so they don't persist between actions
 	sinkhole_threat_label.text = ""
 	wumpus_threat_label.text = ""
 	pitfall_threat_label.text = ""
